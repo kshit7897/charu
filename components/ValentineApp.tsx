@@ -10,7 +10,7 @@ export const ValentineApp: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const noBtnRef = useRef<HTMLButtonElement>(null);
 
-  // Hinglish messages for the 'No' button
+  // Hinglish messages for the 'No' buttons
   const noButtonTexts = [
     "No",
     "Pakka? 🤨",
@@ -33,6 +33,7 @@ export const ValentineApp: React.FC = () => {
     const maxX = window.innerWidth - btnRect.width - padding;
     const maxY = window.innerHeight - btnRect.height - padding;
 
+    // Random jump logic
     const newX = Math.max(padding, Math.random() * maxX);
     const newY = Math.max(padding, Math.random() * maxY);
 
@@ -50,7 +51,7 @@ export const ValentineApp: React.FC = () => {
     return (
       <div className="flex flex-col items-center justify-center text-center p-6 z-10 animate-in fade-in zoom-in duration-700">
         <ConfettiEffect />
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl border-4 border-pink-200 max-w-md flex flex-col items-center">
+        <div className="bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-2xl border-4 border-pink-200 max-w-md flex flex-col items-center">
           <img 
             src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwaWF6ZThhZHBmZGFwaHF6dnJmNmZzZTM1dm04ZWlqNXZoZW9uZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KztT2c4u8mYYUiMKdJ/giphy.gif" 
             alt="Happy Dance" 
@@ -69,17 +70,29 @@ export const ValentineApp: React.FC = () => {
     );
   }
 
-  const yesScale = 1 + (counter * 0.05);
+  // Yes button grows slightly to encourage clicking
+  const yesScale = 1 + (counter * 0.1);
 
   return (
     <div ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center">
       <div className="z-10 flex flex-col items-center transition-all duration-500">
-        <h1 className="text-4xl md:text-6xl font-romantic text-pink-600 mb-16 text-center px-4 drop-shadow-md">
-          My sweetheart,
-           <br/>will you be my Valentine?❤️
+        <div className="mb-10 animate-float">
+          <img 
+            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwaWF6ZThhZHBmZGFwaHF6dnJmNmZzZTM1dm04ZWlqNXZoZW9uZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpN762clOW7/giphy.gif" 
+            alt="Asking Cute" 
+            className="w-40 h-40 rounded-full border-4 border-pink-300 shadow-xl"
+          />
+        </div>
+
+        <h1 className="text-4xl md:text-7xl font-romantic mb-16 text-center px-4 drop-shadow-md select-none">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500 font-bold">
+            My sweetheart,
+            <br/> will you be my Valentine?
+          </span>
+          <span className="inline-block animate-pulse ml-2 text-pink-600">❤️</span>
         </h1>
 
-        <div className="flex items-center justify-center gap-10 w-full max-w-xs relative h-24">
+        <div className="flex items-center justify-center gap-10 md:gap-20 w-full max-w-xs relative h-24">
           <button
             onClick={handleYes}
             style={{ transform: `scale(${yesScale})` }}
@@ -93,13 +106,13 @@ export const ValentineApp: React.FC = () => {
             onMouseEnter={handleNoInteraction}
             onClick={handleNoInteraction}
             onTouchStart={handleNoInteraction}
-            className={`px-8 py-5 bg-gray-400 text-white rounded-full text-xl font-bold shadow-2xl transition-all duration-300 whitespace-nowrap ${
+            className={`px-8 py-5 bg-gray-400/90 text-white rounded-full text-xl font-bold shadow-2xl transition-all duration-300 whitespace-nowrap ${
               noButtonInitial ? 'relative z-10' : 'fixed z-50'
             }`}
             style={!noButtonInitial ? { 
               left: `${noButtonPos.x}px`, 
               top: `${noButtonPos.y}px`,
-              transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)'
+              transition: 'all 0.4s cubic-bezier(0.19, 1, 0.22, 1)'
             } : {}}
           >
             {noButtonTexts[counter]}
@@ -107,6 +120,7 @@ export const ValentineApp: React.FC = () => {
         </div>
       </div>
 
+      {/* Decorations */}
       <div className="absolute top-10 left-10 text-5xl opacity-50 animate-bounce">🎈</div>
       <div className="absolute bottom-10 right-10 text-5xl opacity-50 animate-bounce delay-500">💌</div>
       <div className="absolute top-1/4 right-1/4 text-4xl opacity-30 animate-pulse">✨</div>
