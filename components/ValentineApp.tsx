@@ -76,13 +76,7 @@ export const ValentineApp: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center">
       <div className="z-10 flex flex-col items-center transition-all duration-500">
-        <div className="mb-10 animate-float">
-          <img 
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwaWF6ZThhZHBmZGFwaHF6dnJmNmZzZTM1dm04ZWlqNXZoZW9uZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpN762clOW7/giphy.gif" 
-            alt="Asking Cute" 
-            className="w-40 h-40 rounded-full border-4 border-pink-300 shadow-xl"
-          />
-        </div>
+        
 
         <h1 className="text-4xl md:text-7xl font-romantic mb-16 text-center px-4 drop-shadow-md select-none">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500 font-bold">
